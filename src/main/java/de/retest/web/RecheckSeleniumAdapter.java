@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -20,16 +23,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.retest.recheck.RecheckAdapter;
+import de.retest.recheck.report.ActionReplayResult;
 import de.retest.recheck.ui.DefaultValueFinder;
 import de.retest.recheck.ui.descriptors.RootElement;
 import de.retest.recheck.ui.descriptors.idproviders.RetestIdProvider;
+import de.retest.recheck.ui.diff.AttributeDifference;
+import de.retest.recheck.ui.diff.ElementDifference;
 import de.retest.recheck.util.RetestIdProviderUtil;
 import de.retest.web.mapping.PathsToWebDataMapping;
+import de.retest.web.selenium.QualifiedElementWarning;
 import de.retest.web.selenium.UnbreakableDriver;
 import de.retest.web.util.SeleniumWrapperUtil;
 import de.retest.web.util.SeleniumWrapperUtil.WrapperOf;
 
-public class RecheckSeleniumAdapter implements RecheckAdapter {
+public class RecheckSeleniumAdapter implements RecheckAdapter, Consumer<QualifiedElementWarning> {
 
 	private static final String GET_ALL_ELEMENTS_BY_PATH_JS_PATH = "/javascript/getAllElementsByPath.js";
 
@@ -117,6 +124,7 @@ public class RecheckSeleniumAdapter implements RecheckAdapter {
 
 		if ( driver instanceof UnbreakableDriver ) {
 			((UnbreakableDriver) driver).setLastActualState( lastChecked );
+			((UnbreakableDriver) driver).setWarningConsumer( this );
 		}
 
 		return Collections.singleton( lastChecked );
@@ -144,4 +152,26 @@ public class RecheckSeleniumAdapter implements RecheckAdapter {
 		return defaultValueFinder;
 	}
 
+	private final List<QualifiedElementWarning> warnings = new ArrayList<>();
+
+	@Override
+	public void notifyAboutDifferences( final ActionReplayResult actionReplayResult ) {
+		for ( final ElementDifference elementDiff : actionReplayResult.getAllElementDifferences() ) {
+			for ( final QualifiedElementWarning warning : warnings ) {
+				if ( elementDiff.getRetestId().equals( warning.getActual().getRetestId() ) ) {
+					// iterate over all attribute and identifying attribute differences
+					// if key matches
+					// add contained warning to attribute difference
+					final AttributeDifference attributeDiff = null;
+					attributeDiff.addElementIdentificationWarning( warning.getWarning() );
+				}
+			}
+		}
+		warnings.clear();
+	}
+
+	@Override
+	public void accept( final QualifiedElementWarning qualifiedWarning ) {
+		warnings.add( qualifiedWarning );
+	}
 }
