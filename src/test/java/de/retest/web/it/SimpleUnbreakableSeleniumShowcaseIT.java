@@ -5,12 +5,14 @@ import java.nio.file.Paths;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import de.retest.recheck.Recheck;
+import de.retest.recheck.junit.vintage.RecheckRule;
 import de.retest.web.RecheckWebImpl;
 import de.retest.web.selenium.By;
 import de.retest.web.selenium.UnbreakableDriver;
@@ -19,6 +21,9 @@ import de.retest.web.selenium.UnbreakableDriver;
  * Simple recheck-web showcase for a Chrome-based integration test. See other *IT classes for more examples.
  */
 public class SimpleUnbreakableSeleniumShowcaseIT {
+	// Connects recheck to your test's life cycle, taking care of starting and finishing tests, naming them, etc.
+	@Rule
+	public RecheckRule rule = new RecheckRule();
 
 	private WebDriver driver;
 	private Recheck re;
@@ -42,13 +47,12 @@ public class SimpleUnbreakableSeleniumShowcaseIT {
 
 		// Use the unbreakable recheck implementation.
 		re = new RecheckWebImpl();
+		// Let the recheck rule know which implementation it shall use.
+		rule.use( re );
 	}
 
 	@Test
-	public void index() throws Exception {
-		// Set the file name of the Golden Master.
-		re.startTest( "simple-showcase" );
-
+	public void simpleShowcase() throws Exception {
 		// Do your Selenium stuff.
 		// final Path showcasePath = Paths.get( "src/test/resources/pages/showcase/retest.html" );
 		final Path showcasePath = Paths.get( "src/test/resources/pages/showcase/retest-changed.html" );
@@ -79,17 +83,11 @@ public class SimpleUnbreakableSeleniumShowcaseIT {
 		// Will issue a warning, as the class has changed
 		// TODO Implement searching for complex css expressions
 		// driver.findElement( By.cssSelector( "ul div.slider-text" ) );
-
-		// TODO Ignore the differences in order to be able to re.cap the test...
-		// re.capTest();
 	}
 
 	@After
 	public void tearDown() {
 		driver.quit();
-
-		// Produce the result file.
-		// re.cap();
 	}
 
 }
