@@ -21,14 +21,12 @@ class YamlAttributesConfigDeserializerTest {
 	@Test
 	void should_handle_attributes_selected() throws Exception {
 		final YamlAttributesConfig attributesConfig = deserialize( new File( baseDir, "selected.yaml" ) );
-		assertThat( attributesConfig.getCssAttributes() ).contains( "foo", "bar", "baz" );
 		assertThat( attributesConfig.getHtmlAttributes() ).contains( "tic", "tac", "toe" );
 	}
 
 	@Test
 	void should_handle_attributes_empty() throws Exception {
 		final YamlAttributesConfig attributesConfig = deserialize( new File( baseDir, "empty.yaml" ) );
-		assertThat( attributesConfig.getCssAttributes() ).isEmpty();
 		assertThat( attributesConfig.getHtmlAttributes() ).isEmpty();
 	}
 

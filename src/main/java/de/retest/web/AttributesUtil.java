@@ -49,7 +49,7 @@ public class AttributesUtil {
 	}
 
 	private static boolean isCssAttribute( final String key, final AttributesProvider provider ) {
-		return provider.getCssAttributes().contains( key );
+		return true;
 	}
 
 }
