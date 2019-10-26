@@ -1,3 +1,6 @@
+var WANTED_WIDTH = 800;
+var fullWidth = Math.max([ document.documentElement.clientWidth, document.body ? document.body.scrollWidth : 0, document.documentElement.scrollWidth,
+		document.body ? document.body.offsetWidth : 0, document.documentElement.offsetWidth ]);
 cssAttributes = arguments[0];
 
 var Counter = /** @class */ (function () {
@@ -40,16 +43,18 @@ function getY(node) {
 
 function addCoordinates(extractedAttributes, node) {
     // these attributes need special treatment
-    extractedAttributes["absolute-x"] = getX(node);
-    extractedAttributes["absolute-y"] = getY(node);
-    extractedAttributes["absolute-width"] = node.getBoundingClientRect().width;
-    extractedAttributes["absolute-height"] = node.getBoundingClientRect().height;
-    if (typeof node.parentNode.getBoundingClientRect === "function") {
-        extractedAttributes["x"] = getX(node) - getX(node.parentNode);
-        extractedAttributes["y"] = getY(node) - getY(node.parentNode);
-        extractedAttributes["width"] = node.getBoundingClientRect().width - node.parentNode.getBoundingClientRect().width;
-        extractedAttributes["height"] = node.getBoundingClientRect().height - node.parentNode.getBoundingClientRect().height;
-    } else {
+    extractedAttributes["absolute-x"] = getX(node) * (WANTED_WIDTH / fullWidth);
+    extractedAttributes["absolute-y"] = getY(node) * (WANTED_WIDTH / fullWidth);
+    extractedAttributes["absolute-width"] = node.getBoundingClientRect().width * (WANTED_WIDTH / fullWidth);
+    extractedAttributes["absolute-height"] = node.getBoundingClientRect().height * (WANTED_WIDTH / fullWidth);
+    var parentNode = node.parentNode;
+    if (typeof parentNode.getBoundingClientRect === "function") {
+        extractedAttributes["x"] = getX(node) - getX(parentNode);
+        extractedAttributes["y"] = getY(node) - getY(parentNode);
+        extractedAttributes["width"] = node.getBoundingClientRect().width - parentNode.getBoundingClientRect().width;
+        extractedAttributes["height"] = node.getBoundingClientRect().height - parentNode.getBoundingClientRect().height;
+    }
+    else {
         extractedAttributes["x"] = getX(node);
         extractedAttributes["y"] = getY(node);
         extractedAttributes["width"] = node.getBoundingClientRect().width;
