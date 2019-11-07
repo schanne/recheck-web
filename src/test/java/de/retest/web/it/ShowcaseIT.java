@@ -14,7 +14,6 @@ import de.retest.recheck.Recheck;
 import de.retest.recheck.RecheckImpl;
 import de.retest.recheck.junit.jupiter.RecheckExtension;
 
-// Use extension to administer lifecycle of test
 @ExtendWith( RecheckExtension.class )
 class ShowcaseIT {
 

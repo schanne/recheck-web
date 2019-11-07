@@ -19,7 +19,7 @@ import de.retest.recheck.junit.vintage.RecheckRule;
  * Simple recheck-web showcase for a Chrome-based integration test. See other *IT classes for more examples.
  */
 public class SimpleRecheckShowcaseIT {
-	// Connects recheck to your test's life cycle, taking care of starting and finishing tests, naming them, etc.
+	// Use rule to administer lifecycle of test.
 	@Rule
 	public RecheckRule rule = new RecheckRule();
 

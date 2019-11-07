@@ -20,7 +20,7 @@ import de.retest.web.selenium.UnbreakableDriver;
  * Simple recheck-web showcase for a Chrome-based integration test. See other *IT classes for more examples.
  */
 public class SimpleRetestIdShowcaseIT {
-	// Connects recheck to your test's life cycle, taking care of starting and finishing tests, naming them, etc.
+	// Use rule to administer lifecycle of test.
 	@Rule
 	public RecheckRule rule = new RecheckRule();
 
