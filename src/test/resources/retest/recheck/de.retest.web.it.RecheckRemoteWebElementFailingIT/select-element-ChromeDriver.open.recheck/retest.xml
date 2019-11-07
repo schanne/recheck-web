@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<reTestXmlDataContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" reTestVersion="1.4.0" dataType="de.retest.recheck.ui.descriptors.SutState" dataTypeVersion="4">
+<reTestXmlDataContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" reTestVersion="1.6.0" dataType="de.retest.recheck.ui.descriptors.SutState" dataTypeVersion="4">
 	<data xsi:type="sutState">
 		<descriptors retestId="select" screenId="1" screen="WebElement" title="html[1]/body[1]/form[3]/select[2]">
 			<identifyingAttributes>
@@ -127,60 +127,6 @@
 					</entry>
 				</attributes>
 			</attributes>
-			<containedElements retestId="onion_gravy">
-				<identifyingAttributes>
-					<attributes>
-						<attribute key="absolute-outline" xsi:type="outlineAttribute">
-							<x>257</x>
-							<y>167</y>
-							<height>17</height>
-							<width>76</width>
-						</attribute>
-						<attribute key="outline" xsi:type="outlineAttribute">
-							<x>1</x>
-							<y>52</y>
-							<height>-53</height>
-							<width>-17</width>
-						</attribute>
-						<attribute key="path" xsi:type="pathAttribute">html[1]/body[1]/form[3]/select[2]/option[4]</attribute>
-						<attribute key="suffix" xsi:type="suffixAttribute">4</attribute>
-						<attribute key="text" xsi:type="textAttribute">Onion gravy</attribute>
-						<attribute key="type" xsi:type="stringAttribute">option</attribute>
-					</attributes>
-				</identifyingAttributes>
-				<attributes>
-					<attributes>
-						<entry>
-							<key>min-height</key>
-							<value xsi:type="xsd:string">16px</value>
-						</entry>
-						<entry>
-							<key>padding-bottom</key>
-							<value xsi:type="xsd:string">1px</value>
-						</entry>
-						<entry>
-							<key>padding-left</key>
-							<value xsi:type="xsd:string">2px</value>
-						</entry>
-						<entry>
-							<key>padding-right</key>
-							<value xsi:type="xsd:string">2px</value>
-						</entry>
-						<entry>
-							<key>shown</key>
-							<value xsi:type="xsd:string">true</value>
-						</entry>
-						<entry>
-							<key>value</key>
-							<value xsi:type="xsd:string">onion gravy</value>
-						</entry>
-						<entry>
-							<key>white-space</key>
-							<value xsi:type="xsd:string">pre</value>
-						</entry>
-					</attributes>
-				</attributes>
-			</containedElements>
 			<containedElements retestId="eggs">
 				<identifyingAttributes>
 					<attributes>
@@ -431,8 +377,62 @@
 					</attributes>
 				</attributes>
 			</containedElements>
+			<containedElements retestId="onion_gravy">
+				<identifyingAttributes>
+					<attributes>
+						<attribute key="absolute-outline" xsi:type="outlineAttribute">
+							<x>257</x>
+							<y>166</y>
+							<height>17</height>
+							<width>76</width>
+						</attribute>
+						<attribute key="outline" xsi:type="outlineAttribute">
+							<x>1</x>
+							<y>52</y>
+							<height>-53</height>
+							<width>-17</width>
+						</attribute>
+						<attribute key="path" xsi:type="pathAttribute">html[1]/body[1]/form[3]/select[2]/option[4]</attribute>
+						<attribute key="suffix" xsi:type="suffixAttribute">4</attribute>
+						<attribute key="text" xsi:type="textAttribute">Onion gravy</attribute>
+						<attribute key="type" xsi:type="stringAttribute">option</attribute>
+					</attributes>
+				</identifyingAttributes>
+				<attributes>
+					<attributes>
+						<entry>
+							<key>min-height</key>
+							<value xsi:type="xsd:string">16px</value>
+						</entry>
+						<entry>
+							<key>padding-bottom</key>
+							<value xsi:type="xsd:string">1px</value>
+						</entry>
+						<entry>
+							<key>padding-left</key>
+							<value xsi:type="xsd:string">2px</value>
+						</entry>
+						<entry>
+							<key>padding-right</key>
+							<value xsi:type="xsd:string">2px</value>
+						</entry>
+						<entry>
+							<key>shown</key>
+							<value xsi:type="xsd:string">true</value>
+						</entry>
+						<entry>
+							<key>value</key>
+							<value xsi:type="xsd:string">onion gravy</value>
+						</entry>
+						<entry>
+							<key>white-space</key>
+							<value xsi:type="xsd:string">pre</value>
+						</entry>
+					</attributes>
+				</attributes>
+			</containedElements>
 			<screenshot>
-				<persistenceId>select_b0398bd8a34b4b9128404e8c7b6ecb99d35238103cddf4bd8bb30363dbca8c84</persistenceId>
+				<persistenceId>multi</persistenceId>
 				<type>PNG</type>
 			</screenshot>
 		</descriptors>
